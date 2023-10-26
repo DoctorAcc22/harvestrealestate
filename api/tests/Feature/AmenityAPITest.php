@@ -15,8 +15,8 @@ class AmenityAPITest extends TestCase
     public function test_amenity_api_call_store_expect_successful()
     {
         $amenityArr = Amenity::make([
-            'code' => "123",
-            'name' => "dika",
+            'code' => '123',
+            'name' => 'dika',
             'status' => 1,
         ])->toArray();
 

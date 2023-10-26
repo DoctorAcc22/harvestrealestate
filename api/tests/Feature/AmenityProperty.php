@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\API\AmenityPropertyAPI;
 
-use App\Models\AmenityProperty;
 use Tests\TestCase;
 
 class AmenityPropertyAPITest extends TestCase

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\API\FloorPlanAPI;
 
-use App\Models\FloorPlan;
 use Tests\TestCase;
 
 class FloorPlanAPITest extends TestCase

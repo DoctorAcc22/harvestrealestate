@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\API\TestimonialAPI;
 
-use App\Models\Testimonial;
 use Tests\TestCase;
 
 class TestimonialAPITest extends TestCase

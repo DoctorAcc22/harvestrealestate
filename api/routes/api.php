@@ -10,7 +10,6 @@ use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VideoController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,7 +54,7 @@ Route::group(['prefix' => 'post', 'middleware' => ['auth:sanctum', 'throttle:50,
                 Route::post('delete/{property_category:ulid}', [PropertyCategoryController::class, 'delete'])->name('.delete');
             });
         });
-        
+
         Route::group(['prefix' => 'type', 'as' => '.type'], function () {
             Route::group(['prefix' => 'type', 'as' => '.type'], function () {
                 Route::post('save', [TypeController::class, 'store'])->name('.save');
@@ -68,7 +67,7 @@ Route::group(['prefix' => 'post', 'middleware' => ['auth:sanctum', 'throttle:50,
                 Route::post('delete/{property_type:ulid}', [PropertyTypeController::class, 'delete'])->name('.delete');
             });
         });
-        
+
         Route::group(['prefix' => 'floor_plan', 'as' => '.floor_plan'], function () {
             Route::group(['prefix' => 'floor_plan', 'as' => '.floor_plan'], function () {
                 Route::post('save', [FloorPlanController::class, 'store'])->name('.save');
@@ -84,7 +83,7 @@ Route::group(['prefix' => 'post', 'middleware' => ['auth:sanctum', 'throttle:50,
                 Route::post('delete/{video:ulid}', [VideoController::class, 'delete'])->name('.delete');
             });
         });
-        
+
         Route::group(['prefix' => 'agent', 'as' => '.agent'], function () {
             Route::group(['prefix' => 'agent', 'as' => '.agent'], function () {
                 Route::post('save', [AgentController::class, 'store'])->name('.save');
@@ -92,7 +91,7 @@ Route::group(['prefix' => 'post', 'middleware' => ['auth:sanctum', 'throttle:50,
                 Route::post('delete/{agent:ulid}', [AgentController::class, 'delete'])->name('.delete');
             });
         });
-        
+
         Route::group(['prefix' => 'testimonial', 'as' => '.testimonial'], function () {
             Route::group(['prefix' => 'testimonial', 'as' => '.testimonial'], function () {
                 Route::post('save', [TestimonialController::class, 'store'])->name('.save');
@@ -100,7 +99,7 @@ Route::group(['prefix' => 'post', 'middleware' => ['auth:sanctum', 'throttle:50,
                 Route::post('delete/{testimonial:ulid}', [TestimonialController::class, 'delete'])->name('.delete');
             });
         });
-        
+
         Route::group(['prefix' => 'property', 'as' => '.property'], function () {
             Route::group(['prefix' => 'property', 'as' => '.property'], function () {
                 Route::post('save', [PropertyController::class, 'store'])->name('.save');

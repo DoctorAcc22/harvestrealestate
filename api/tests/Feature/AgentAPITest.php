@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\API\AgentAPI;
 
-use App\Models\Agent;
 use Tests\TestCase;
 
 class AgentAPITest extends TestCase

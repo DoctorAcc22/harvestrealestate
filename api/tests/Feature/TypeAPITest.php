@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\API\TypeAPI;
 
-use App\Models\Type;
 use Tests\TestCase;
 
 class TypeAPITest extends TestCase

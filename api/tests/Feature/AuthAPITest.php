@@ -2,11 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class AuthAPITest extends TestCase
 {
@@ -24,9 +21,9 @@ class AuthAPITest extends TestCase
     }
 
     public function test_auth_api_call_login_expect_successful()
-    {    
+    {
         $password = '1234567890';
-        $user = User::factory()->create(['password' => $password])->toArray();        
+        $user = User::factory()->create(['password' => $password])->toArray();
         $user['password'] = $password;
 
         $api = $this->json('POST', 'api/login', $user);
@@ -38,18 +35,18 @@ class AuthAPITest extends TestCase
     {
         $password = '1234567890';
         $user = User::factory()->create(['password' => $password]);
-        
+
         $this->actingAs($user);
         $user['password'] = $password;
 
         $api = $this->json('POST', 'api/login', array_merge($user->toArray(), ['password' => $password]));
-        
+
         $api->assertStatus(200);
 
         $bearerToken = $api->decodeResponseJson()['access_token'];
 
         $api = $this->json('POST', 'api/logout', [$bearerToken]);
-        
-        $api->assertStatus(200);        
+
+        $api->assertStatus(200);
     }
 }
