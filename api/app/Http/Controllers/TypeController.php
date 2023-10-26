@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 
-class CategoryController extends Controller
+class TypeController extends Controller
 {
     public function create()
     {
@@ -23,14 +23,14 @@ class CategoryController extends Controller
             ]);
         }
 
-        $category = new Category();
-        $category->code = request()->code;
-        $category->name = request()->name;
-        $category->save();
+        $type = new Type();
+        $type->code = request()->code;
+        $type->name = request()->name;
+        $type->save();
 
         return response()->json([
             "status" => "success",
-            "message" => "Category has been created."
+            "message" => "Type has been created."
         ]);
     }
 }
