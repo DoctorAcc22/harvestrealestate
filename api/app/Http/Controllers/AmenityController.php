@@ -35,4 +35,9 @@ class AmenityController extends Controller
             "message" => "Amenity has been created."
         ]);
     }
+
+    public function update()
+    {
+
+    }
 }

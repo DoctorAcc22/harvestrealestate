@@ -59,4 +59,9 @@ class PropertyController extends Controller
             "message" => "Property has been created."
         ]);
     }
+
+    public function update()
+    {
+
+    }
 }

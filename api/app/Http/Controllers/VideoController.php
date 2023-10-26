@@ -56,4 +56,9 @@ class VideoController extends Controller
             "message" => "Image has been created."
         ]);
     }
+
+    public function update()
+    {
+
+    }
 }

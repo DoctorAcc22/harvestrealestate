@@ -33,4 +33,9 @@ class PropertyTypeController extends Controller
             "message" => "Property Type has been created."
         ]);
     }
+
+    public function update()
+    {
+
+    }
 }

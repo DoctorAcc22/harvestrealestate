@@ -49,4 +49,9 @@ class TestimonialController extends Controller
             "message" => "Testimonial has been created."
         ]);
     }
+
+    public function update()
+    {
+
+    }
 }

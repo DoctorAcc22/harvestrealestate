@@ -33,4 +33,9 @@ class TypeController extends Controller
             "message" => "Type has been created."
         ]);
     }
+
+    public function update()
+    {
+
+    }
 }

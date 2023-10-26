@@ -33,4 +33,9 @@ class PropertyCategoryController extends Controller
             "message" => "Property Amenity has been created."
         ]);
     }
+
+    public function update()
+    {
+
+    }
 }

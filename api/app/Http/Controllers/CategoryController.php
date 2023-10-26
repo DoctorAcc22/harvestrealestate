@@ -33,4 +33,9 @@ class CategoryController extends Controller
             "message" => "Category has been created."
         ]);
     }
+
+    public function update()
+    {
+
+    }
 }
