@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\API\PropertyAPI;
 
-use App\Models\Property;
 use Tests\TestCase;
 
 class PropertyAPITest extends TestCase

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Property;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 
 class PropertyController extends Controller
@@ -11,28 +10,27 @@ class PropertyController extends Controller
     public function create()
     {
         $validator = Validator::make(request()->all(), [
-            "code" => "required",
-            "area" => "required",
-            "title" => "required",
-            "description" => "required",
-            "loc_city" => "required",
-            "loc_latitude" => "required",
-            "loc_longitude" => "required",
-            "loc_address" => "required",
-            "loc_state" => "required",
-            "loc_neightborhood" => "required",
-            "loc_zip" => "required",
-            "loc_country" => "required",
-            "price" => "required",
-            "prce_label" => "required",
-            "agent_id" => "required",
+            'code' => 'required',
+            'area' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'loc_city' => 'required',
+            'loc_latitude' => 'required',
+            'loc_longitude' => 'required',
+            'loc_address' => 'required',
+            'loc_state' => 'required',
+            'loc_neightborhood' => 'required',
+            'loc_zip' => 'required',
+            'loc_country' => 'required',
+            'price' => 'required',
+            'prce_label' => 'required',
+            'agent_id' => 'required',
         ]);
-        
-        if ($validator->fails())
-        {
+
+        if ($validator->fails()) {
             return response()->json([
-                "status" => "error",
-                "message" => $validator->errors()->all()[0]
+                'status' => 'error',
+                'message' => $validator->errors()->all()[0],
             ]);
         }
 
@@ -55,8 +53,8 @@ class PropertyController extends Controller
         $property->save();
 
         return response()->json([
-            "status" => "success",
-            "message" => "Property has been created."
+            'status' => 'success',
+            'message' => 'Property has been created.',
         ]);
     }
 

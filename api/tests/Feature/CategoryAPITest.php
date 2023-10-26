@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\API\CategoryAPI;
 
-use App\Models\Category;
 use Tests\TestCase;
 
 class CategoryAPITest extends TestCase

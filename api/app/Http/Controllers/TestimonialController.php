@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Testimonial;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 
 class TestimonialController extends Controller
@@ -11,23 +10,22 @@ class TestimonialController extends Controller
     public function create()
     {
         $validator = Validator::make(request()->all(), [
-            "code" => "required",
-            "user_id" => "required",
-            "name" => "required",
-            "email" => "required",
-            "content" => "required",
-            "rating" => "required",
-            "property_id" => "required",
-            "company" => "required",
-            "photo_url" => "required",
-            "video_url" => "required",
+            'code' => 'required',
+            'user_id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'content' => 'required',
+            'rating' => 'required',
+            'property_id' => 'required',
+            'company' => 'required',
+            'photo_url' => 'required',
+            'video_url' => 'required',
         ]);
-        
-        if ($validator->fails())
-        {
+
+        if ($validator->fails()) {
             return response()->json([
-                "status" => "error",
-                "message" => $validator->errors()->all()[0]
+                'status' => 'error',
+                'message' => $validator->errors()->all()[0],
             ]);
         }
 
@@ -45,8 +43,8 @@ class TestimonialController extends Controller
         $testimoninal->save();
 
         return response()->json([
-            "status" => "success",
-            "message" => "Testimonial has been created."
+            'status' => 'success',
+            'message' => 'Testimonial has been created.',
         ]);
     }
 

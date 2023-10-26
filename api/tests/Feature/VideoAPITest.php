@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\API\VideoAPI;
 
-use App\Models\Video;
 use Tests\TestCase;
 
 class VideoAPITest extends TestCase
