@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('property_amenities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('property_id')->references('id')->on('properties');
-            $table->foreignId('amenities_id')->references('id')->on('amenities');
+            $table->foreignId('amenity_id')->references('id')->on('amenities');
             $table->timestamps();
         });
     }

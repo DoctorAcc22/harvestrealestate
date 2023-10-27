@@ -2,8 +2,9 @@
 
 namespace Tests\Feature\API\AmenityAPI;
 
-use App\Models\Amenity;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\Amenity;
 
 class AmenityAPITest extends TestCase
 {
@@ -14,13 +15,24 @@ class AmenityAPITest extends TestCase
 
     public function test_amenity_api_call_store_expect_successful()
     {
-        $amenityArr = Amenity::make([
-            'code' => '123',
-            'name' => 'dika',
-            'status' => 1,
-        ])->toArray();
+        $password = '1234567890';
+        $user = User::factory()->create(['password' => $password]);
 
-        $api = $this->json('POST', route('api.post.db.amenity.amenity.save'), $amenityArr);
+        $this->actingAs($user);
+        $user['password'] = $password;
+
+        $api = $this->json('POST', 'api/login', array_merge($user->toArray(), ['password' => $password]));
+
+        $api->assertStatus(200);
+
+        
+        $amenityArr = [
+            'code' => '001',
+            'name' => 'School',
+            'status' => 1,
+        ];
+
+        $api = $this->json('POST', 'api/amenity/save', $amenityArr);
 
         $api->assertSuccessful();
         $this->assertDatabaseHas('amenities', [
