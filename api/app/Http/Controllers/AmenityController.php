@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Amenity;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class AmenityController extends Controller
 {
