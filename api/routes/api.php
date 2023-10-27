@@ -30,8 +30,8 @@ Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']
 Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'amenity', 'as' => '.amenity'], function () {
         Route::post('save', [AmenityController::class, 'create']);
-        Route::post('edit/{amenity:ulid}', [AmenityController::class, 'update']);
-        Route::post('delete/{amenity:ulid}', [AmenityController::class, 'delete']);
+        Route::post('edit/{amenity:id}', [AmenityController::class, 'update']);
+        Route::post('delete/{amenity:id}', [AmenityController::class, 'delete']);
     });
 
     Route::group(['prefix' => 'category', 'as' => '.category'], function () {
