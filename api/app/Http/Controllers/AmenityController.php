@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Amenity;
 use Illuminate\Support\Facades\Validator;
 use App\Actions\Randomizer\RandomizerActions;
@@ -34,6 +35,24 @@ class AmenityController extends Controller
             'message' => 'Amenity has been created.',
         ]);
     }
+
+    public function read()
+    {
+        $amenities = Amenity::all();
+
+        if ($amenities->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No amenities found.',
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $amenities,
+        ]);
+    }
+
 
     public function update(Amenity $amenity)
     {
@@ -71,6 +90,25 @@ class AmenityController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Amenity has been updated.',
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $amenity = Amenity::find($id);
+
+        if (!$amenity) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Amenity not found.',
+            ]);
+        }
+
+        $amenity->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Amenity has been deleted.',
         ]);
     }
 
