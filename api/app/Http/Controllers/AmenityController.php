@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use App\Models\Amenity;
-use Illuminate\Support\Facades\Validator;
 use App\Actions\Randomizer\RandomizerActions;
+use App\Models\Amenity;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class AmenityController extends Controller
 {
@@ -38,21 +39,14 @@ class AmenityController extends Controller
 
     public function read()
     {
-        $amenities = Amenity::all();
-
-        if ($amenities->isEmpty()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'No amenities found.',
-            ]);
-        }
+        $amenities = Amenity::orderBy('name', 'asc')->get();
 
         return response()->json([
             'status' => 'success',
-            'data' => $amenities,
+            'message' => 'Data has been fetched.',
+            'amenities' => $amenities,
         ]);
     }
-
 
     public function update(Amenity $amenity)
     {
@@ -66,7 +60,7 @@ class AmenityController extends Controller
         if ($code == 'AUTO') {
             do {
                 $code = $this->generateUniqueCode();
-            } while (! $this->isUniqueCode($code,  $amenity->id));
+            } while (! $this->isUniqueCode($code, $amenity->id));
         } else {
             if (! $this->isUniqueCode($code, $amenity->id)) {
                 return response()->error([
@@ -93,18 +87,18 @@ class AmenityController extends Controller
         ]);
     }
 
-    public function delete($id)
+    public function delete(Amenity $amenity)
     {
-        $amenity = Amenity::find($id);
+        DB::beginTransaction();
 
-        if (!$amenity) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Amenity not found.',
-            ]);
+        try {
+            $result = $amenity->delete();
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-
-        $amenity->delete();
 
         return response()->json([
             'status' => 'success',
@@ -120,7 +114,7 @@ class AmenityController extends Controller
         return $code;
     }
 
-    public function isUniqueCode(string $code, ?int $exceptId = null): bool
+    public function isUniqueCode(string $code, int $exceptId = null): bool
     {
         $result = Amenity::where('code', '=', $code);
 
