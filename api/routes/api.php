@@ -1,17 +1,16 @@
 <?php
 
-use App\Models\PropertyAmenity;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TypeController;
 use App\Http\Controllers\AgentController;
-use App\Http\Controllers\VideoController;
 use App\Http\Controllers\AmenityController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\FloorPlanController;
-use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\PropertyCategoryController;
+use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\PropertyTypeController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\VideoController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +29,7 @@ Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']
 Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'amenity', 'as' => '.amenity'], function () {
         Route::post('save', [AmenityController::class, 'create']);
+        Route::get('read', [AmenityController::class, 'read']);
         Route::post('edit/{amenity:id}', [AmenityController::class, 'update']);
         Route::post('delete/{amenity:id}', [AmenityController::class, 'delete']);
     });
