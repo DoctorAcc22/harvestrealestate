@@ -38,9 +38,9 @@ class AmenityController extends Controller
     }
 
     public function read()
-    {        
+    {
         $amenities = Amenity::orderBy('name', 'asc')->get();
-        
+
         return response()->json([
             'status' => 'success',
             'message' => 'Data has been fetched.',

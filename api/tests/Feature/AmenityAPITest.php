@@ -65,8 +65,8 @@ class AmenityAPITest extends TestCase
 
         $result = json_decode($api->baseResponse->getContent(), true);
         $found = false;
-        for($i = 0; $i < count($result['amenities']); $i++) {
-            if ($result['amenities'][$i]['code'] == $amenity->code && $result['amenities'][$i]['name'] == $amenity->name ) {
+        for ($i = 0; $i < count($result['amenities']); $i++) {
+            if ($result['amenities'][$i]['code'] == $amenity->code && $result['amenities'][$i]['name'] == $amenity->name) {
                 $found = true;
             }
         }
