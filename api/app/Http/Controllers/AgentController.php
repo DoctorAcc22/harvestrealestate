@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agent;
-use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class AgentController extends Controller
 {
@@ -49,7 +49,7 @@ class AgentController extends Controller
         $agent->hire_date = request()->hire_date;
         $agent->employment_status = request()->employment_status;
         $agent->commision_rate = request()->commision_rate;
-        $agent->specialization = request()->specialization;
+        $agent->specialization = request()->specialization; 
         $agent->years_of_experience = request()->years_of_experience;
         $agent->properties_sold = request()->properties_sold;
         $agent->save();
@@ -60,9 +60,8 @@ class AgentController extends Controller
         ]);
     }
 
-    public function update($id)
+    public function update(Agent $agent)
     {
-        // Validasi input
         $validator = Validator::make(request()->all(), [
             'code' => 'required',
             'first_name' => 'required',
@@ -82,19 +81,23 @@ class AgentController extends Controller
             'properties_sold' => 'required',
         ]);
 
+        $code = request()->code;
+        if ($code == 'AUTO') {
+            do {
+                $code = $this->generateUniqueCode();
+            } while (! $this->isUniqueCode($code,  $agent->id));
+        } else {
+            if (! $this->isUniqueCode($code, $agent->id)) {
+                return response()->error([
+                    'code' => 'Code already used.',
+                ], 422);
+            }
+        }
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()->all()[0],
-            ]);
-        }
-
-        $agent = Agent::find($id);
-
-        if (!$agent) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Agent not found.',
             ]);
         }
 
@@ -111,10 +114,9 @@ class AgentController extends Controller
         $agent->hire_date = request()->hire_date;
         $agent->employment_status = request()->employment_status;
         $agent->commision_rate = request()->commision_rate;
-        $agent->specialization = request()->specialization;
+        $agent->specialzation = request()->specialzation;
         $agent->years_of_experience = request()->years_of_experience;
         $agent->properties_sold = request()->properties_sold;
-        
         $agent->save();
 
         return response()->json([
