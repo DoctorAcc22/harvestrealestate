@@ -29,7 +29,11 @@ return new class extends Migration
             $table->string('specialization');
             $table->string('years_of_experience');
             $table->string('properties_old');
+            $table->unsignedBigInteger('created_by')->default(0);
+            $table->unsignedBigInteger('updated_by')->default(0);
+            $table->unsignedBigInteger('deleted_by')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
