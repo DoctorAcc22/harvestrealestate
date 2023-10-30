@@ -28,7 +28,11 @@ return new class extends Migration
             $table->string('price');
             $table->string('price_label');
             $table->foreignId('agent_id')->references('id')->on('agents');
+            $table->unsignedBigInteger('created_by')->default(0);
+            $table->unsignedBigInteger('updated_by')->default(0);
+            $table->unsignedBigInteger('deleted_by')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('property_id')->references('id')->on('properties');
             $table->foreignId('types_id')->references('id')->on('types');
+            $table->unsignedBigInteger('created_by')->default(0);
+            $table->unsignedBigInteger('updated_by')->default(0);
+            $table->unsignedBigInteger('deleted_by')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

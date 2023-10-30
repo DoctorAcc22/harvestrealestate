@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
+            $table->unsignedBigInteger('created_by')->default(0);
+            $table->unsignedBigInteger('updated_by')->default(0);
+            $table->unsignedBigInteger('deleted_by')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
